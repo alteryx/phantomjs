@@ -43,7 +43,3 @@ default['phantomjs']['src_dir'] = '/usr/local/src'
 
 # The base URL to download tarball from
 default['phantomjs']['base_url'] = 'https://bitbucket.org/ariya/phantomjs/downloads'
-
-# The name of the tarball to download (this is automatically calculated from
-# the phantomjs version and kernel type)
-default['phantomjs']['basename'] = "phantomjs-#{node['phantomjs']['version']}-linux-#{node['kernel']['machine']}"
