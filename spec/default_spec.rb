@@ -22,27 +22,27 @@ describe 'phantomjs::default' do
   end
 
   it 'downloads the tarball' do
-    expect(runner).to create_remote_file("#{src_dir}/#{basename}.tar.bz2")
+    expect(runner).to create_remote_file(::File.join(src_dir, "#{basename}.tar.bz2"))
   end
 
   it 'is owned by the root user' do
-    download = runner.remote_file("#{src_dir}/#{basename}.tar.bz2")
+    download = runner.remote_file(::File.join(src_dir, "#{basename}.tar.bz2"))
     expect(download.owner).to eq('root')
     expect(download.group).to eq('root')
   end
 
   it 'has 0644 permissions' do
-    download = runner.remote_file("#{src_dir}/#{basename}.tar.bz2")
+    download = runner.remote_file(::File.join(src_dir, "#{basename}.tar.bz2"))
     expect(download.mode).to eq('0644')
   end
 
   it 'notifies the execute resource' do
-    download = runner.remote_file("#{src_dir}/#{basename}.tar.bz2")
+    download = runner.remote_file(::File.join(src_dir, "#{basename}.tar.bz2"))
     expect(download).to notify("execute[phantomjs-install]").to(:run) 
   end
 
   it 'extracts the binary' do
-    expect(runner).to run_execute("tar -xvjf /src/#{basename}.tar.bz2 -C /usr/local/")
+    expect(runner).to run_execute("tar -xvjf #{::File.join(src_dir, "#{basename}.tar.bz2")} -C /usr/local/")
   end
 
   it 'notifies the link' do

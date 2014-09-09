@@ -60,7 +60,7 @@ All attributes are namespaced under `node['phantomjs']`.
       <td>version</td>
       <td>The version to install</td>
       <td><tt>1.0.0</tt></td>
-      <td><tt>1.9.2</tt></td>
+      <td><tt>1.9.7</tt></td>
     </tr>
     <tr>
       <td>packages</td>
@@ -85,12 +85,6 @@ All attributes are namespaced under `node['phantomjs']`.
       <td>URL for download</td>
       <td><tt>http://example.com/</tt></td>
       <td><tt>https://phantomjs.googlecode.com/files</tt></td>
-    </tr>
-    <tr>
-      <td>basename</td>
-      <td>Name of the package</td>
-      <td><tt>phantomjs-1.0.0-x86</tt></td>
-      <td>(varies)</td>
     </tr>
   </tbody>
 </table>
