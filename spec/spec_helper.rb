@@ -1,6 +1,4 @@
-require 'berkshelf'
 require 'chefspec'
+require 'chefspec/deprecations'
+require 'chefspec/berkshelf'
 
-Berkshelf.ui.mute {
-  Berkshelf::Berksfile.from_file('Berksfile').install(path: 'vendor/cookbooks')
-}

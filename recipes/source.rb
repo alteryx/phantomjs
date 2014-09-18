@@ -30,7 +30,7 @@ node['phantomjs']['packages'].each { |name| package name }
 version  = node['phantomjs']['version']
 base_url = node['phantomjs']['base_url']
 src_dir  = node['phantomjs']['src_dir']
-basename = node['phantomjs']['basename']
+basename = "phantomjs-#{node['phantomjs']['version']}-linux-#{node['kernel']['machine']}"
 checksum = node['phantomjs']['checksum']
 
 remote_file "#{src_dir}/#{basename}.tar.bz2" do
@@ -40,7 +40,7 @@ remote_file "#{src_dir}/#{basename}.tar.bz2" do
   backup    false
   source    "#{base_url}/#{basename}.tar.bz2"
   checksum  checksum if checksum
-  not_if    { ::File.exists?('/usr/local/bin/phantomjs') && `/usr/local/bin/phantomjs --version`.chomp == version }
+  not_if    { ::File.exists?('/usr/local/bin/phantomjs') && `/usr/local/bin/phantomjs --version`.chomp == version } # ~FC048
   notifies  :run, 'execute[phantomjs-install]', :immediately
 end
 
