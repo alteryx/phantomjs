@@ -27,4 +27,5 @@ return unless %w(debian).include?(node['platform_family'])
 default['phantomjs']['packages'] = [
   'fontconfig',
   'libfreetype6',
+  'libjpeg-turbo8'
 ]

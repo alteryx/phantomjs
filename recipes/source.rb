@@ -30,7 +30,13 @@ node['phantomjs']['packages'].each { |name| package name }
 version  = node['phantomjs']['version']
 base_url = node['phantomjs']['base_url']
 src_dir  = node['phantomjs']['src_dir']
-basename = "phantomjs-#{node['phantomjs']['version']}-linux-#{node['kernel']['machine']}"
+
+# We need to have different binaries for different flavors of linux.
+# PhantomJS doesn't suppiort this natively, so we need to fudge it a bit
+# in order to support mutiple linuxes at the same time.
+codename = ( node['lsb'] || {} )['codename'] || 'linux'
+os = %w(trusty precise).include?(codename) ? codename : 'linux'
+basename = "phantomjs-#{node['phantomjs']['version']}-#{os}-#{node['kernel']['machine']}"
 checksum = node['phantomjs']['checksum']
 
 remote_file "#{src_dir}/#{basename}.tar.bz2" do
