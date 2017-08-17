@@ -25,6 +25,7 @@ return unless %w(rhel fedora).include?(node['platform_family'])
 
 # The list of packages to install on redhat-based systems
 default['phantomjs']['packages'] = [
+  'bzip2',
   'fontconfig',
-  'freetype',
+  'freetype'
 ]
